@@ -30,6 +30,7 @@
 		4460C40822C78B920042AC61 /* Firebase+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4460C40722C78B920042AC61 /* Firebase+Utils.swift */; };
 		4460C40D22C7936A0042AC61 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4460C40B22C7936A0042AC61 /* LoginViewModel.swift */; };
 		4460C40E22C7936A0042AC61 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4460C40C22C7936A0042AC61 /* LoginController.swift */; };
+		4460C41122C7BC810042AC61 /* UserDetailsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4460C41022C7BC810042AC61 /* UserDetailsController.swift */; };
 		447FEBCE22BE000B00CD2A4E /* Bindable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447FEBCD22BE000B00CD2A4E /* Bindable.swift */; };
 		447FEBD022BF83C700CD2A4E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 447FEBCF22BF83C700CD2A4E /* GoogleService-Info.plist */; };
 		447FEBD222BF84C900CD2A4E /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447FEBD122BF84C900CD2A4E /* SettingsController.swift */; };
@@ -85,6 +86,7 @@
 		4460C40722C78B920042AC61 /* Firebase+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Firebase+Utils.swift"; sourceTree = "<group>"; };
 		4460C40B22C7936A0042AC61 /* LoginViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		4460C40C22C7936A0042AC61 /* LoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
+		4460C41022C7BC810042AC61 /* UserDetailsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsController.swift; sourceTree = "<group>"; };
 		447FEBCD22BE000B00CD2A4E /* Bindable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bindable.swift; sourceTree = "<group>"; };
 		447FEBCF22BF83C700CD2A4E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		447FEBD122BF84C900CD2A4E /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
@@ -217,6 +219,7 @@
 		44441DF422BBBD94005960B6 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				4460C40F22C7BC470042AC61 /* User Details */,
 				4460C40A22C793130042AC61 /* Login */,
 				44441DB922BA790A005960B6 /* HomeController.swift */,
 				44441DFB22BCCB54005960B6 /* RegistrationController.swift */,
@@ -242,6 +245,14 @@
 				4460C40B22C7936A0042AC61 /* LoginViewModel.swift */,
 			);
 			path = Login;
+			sourceTree = "<group>";
+		};
+		4460C40F22C7BC470042AC61 /* User Details */ = {
+			isa = PBXGroup;
+			children = (
+				4460C41022C7BC810042AC61 /* UserDetailsController.swift */,
+			);
+			path = "User Details";
 			sourceTree = "<group>";
 		};
 		CE20A58A07E70C58DE1DB3A0 /* Frameworks */ = {
@@ -496,6 +507,7 @@
 				44441DFE22BCD697005960B6 /* CustomTextField.swift in Sources */,
 				44441DEC22BA8599005960B6 /* HomeBottomControlsStackView.swift in Sources */,
 				44441DFA22BBD89A005960B6 /* Advertiser.swift in Sources */,
+				4460C41122C7BC810042AC61 /* UserDetailsController.swift in Sources */,
 				44441DB822BA790A005960B6 /* AppDelegate.swift in Sources */,
 				4460C40622C740380042AC61 /* AgeRangeCell.swift in Sources */,
 				4460C40D22C7936A0042AC61 /* LoginViewModel.swift in Sources */,
