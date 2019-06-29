@@ -101,17 +101,13 @@ class SettingsController: UITableViewController, UIImagePickerControllerDelegate
     var user: User?
     
     fileprivate func fetchCurrentUser() {
-        guard let uid = Auth.auth().currentUser?.uid else { return }
-        Firestore.firestore().collection("users").document(uid).getDocument { (snapshot, err) in
+        Firestore.firestore().fetchCurrentUser { (user, err) in
             if let err = err {
-                print(err)
+                print("Failed to fetch user:", err)
                 return
             }
-            
-            guard let dictionary = snapshot?.data() else { return }
-            self.user = User(dictionary: dictionary)
+            self.user = user
             self.loadUserPhotos()
-            
             self.tableView.reloadData()
         }
     }
@@ -285,8 +281,13 @@ class SettingsController: UITableViewController, UIImagePickerControllerDelegate
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(handleCancel))
         navigationItem.rightBarButtonItems = [
             UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(handleSave)),
-            UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(handleCancel))
+            UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(handleLogout))
         ]
+    }
+    
+    @objc fileprivate func handleLogout() {
+        try? Auth.auth().signOut()
+        dismiss(animated: true)
     }
     
     @objc fileprivate func handleSave() {

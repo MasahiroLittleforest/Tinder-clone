@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 import JGProgressHUD
 
-class HomeController: UIViewController, SettingsControllerDelegate {
+class HomeController: UIViewController, SettingsControllerDelegate, LoginControllerDelegate {
     
     let topStackView = TopNavigationStackView()
     let cardsDeckView = UIView()
@@ -26,22 +26,38 @@ class HomeController: UIViewController, SettingsControllerDelegate {
         
         setupLayout()
         fetchCurrentUser()
-//        setupFirestoreUserCards()
-//        fetchUsersFromFirestore()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        print("HomeController did appear")
+        if Auth.auth().currentUser == nil {
+            let registrationController = RegistrationController()
+            registrationController.delegate = self
+            let navController = UINavigationController(rootViewController: registrationController)
+            present(navController, animated: true)
+        }
+    }
+    
+    func didFinishLoggingIn() {
+        fetchCurrentUser()
+    }
+    
+    fileprivate let hud = JGProgressHUD(style: .dark)
     fileprivate var user: User?
     
     fileprivate func fetchCurrentUser() {
-        guard let uid = Auth.auth().currentUser?.uid else { return }
-        Firestore.firestore().collection("users").document(uid).getDocument { (snapshot, err) in
+        hud.textLabel.text = "Loading"
+        hud.show(in: view)
+        cardsDeckView.subviews.forEach({$0.removeFromSuperview()})
+        Firestore.firestore().fetchCurrentUser { (user, err) in
             if let err = err {
-                print(err)
+                print("Failed to fetch user:", err)
+                self.hud.dismiss()
                 return
             }
             
-            guard let dictionary = snapshot?.data() else { return }
-            self.user = User(dictionary: dictionary)
+            self.user = user
             self.fetchUsersFromFirestore()
         }
     }
@@ -55,12 +71,9 @@ class HomeController: UIViewController, SettingsControllerDelegate {
     fileprivate func fetchUsersFromFirestore() {
         guard let minAge = user?.minSeekingAge, let maxAge = user?.maxSeekingAge else { return }
         
-        let hud = JGProgressHUD(style: .dark)
-        hud.textLabel.text = "Fetching Users"
-        hud.show(in: view)
         let query = Firestore.firestore().collection("users").whereField("age", isGreaterThanOrEqualTo: minAge).whereField("age", isLessThanOrEqualTo: maxAge)
         query.getDocuments { (snapshot, err) in
-            hud.dismiss()
+            self.hud.dismiss()
             if let err = err {
                 print("Failed to fetch user:", err)
                 return

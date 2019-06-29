@@ -26,6 +26,8 @@ extension RegistrationController: UIImagePickerControllerDelegate, UINavigationC
 }
 
 class RegistrationController: UIViewController {
+    
+    var delegate: LoginControllerDelegate?
 
     // UI Components
     let selectPhotoButton: UIButton = {
@@ -47,6 +49,9 @@ class RegistrationController: UIViewController {
         imagePickerController.delegate = self
         present(imagePickerController, animated: true)
     }
+    
+    lazy var selectPhotoButtonWidthAnchor = selectPhotoButton.widthAnchor.constraint(equalToConstant: 275)
+    lazy var selectPhotoButtonHeightAnchor = selectPhotoButton.heightAnchor.constraint(equalToConstant: 275)
     
     let fullNameTextField: CustomTextField = {
         let tf = CustomTextField(padding: 16, height: 50)
@@ -108,6 +113,10 @@ class RegistrationController: UIViewController {
             }
             
             print("Finished registering our user")
+            
+            self?.dismiss(animated: true, completion: {
+                self?.delegate?.didFinishLoggingIn()
+            })
         }
         
     }
@@ -140,7 +149,7 @@ class RegistrationController: UIViewController {
             guard let isFormValid = isformValid else { return }
             self.registerButton.isEnabled = isFormValid
             if isFormValid {
-                self.registerButton.backgroundColor = #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)
+                self.registerButton.backgroundColor = #colorLiteral(red: 0.8235294118, green: 0, blue: 0.3254901961, alpha: 1)
                 self.registerButton.setTitleColor(.white, for: .normal)
             } else {
                 self.registerButton.backgroundColor = .lightGray
@@ -161,23 +170,6 @@ class RegistrationController: UIViewController {
             }
         }
         
-//        registrationViewModel.isFormValidObserver = { [unowned self] (isFormValid) in
-//            print("Form is changing, is it valid?", isFormValid)
-//
-//            self.registerButton.isEnabled = isFormValid
-//            if isFormValid {
-//                self.registerButton.backgroundColor = #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)
-//                self.registerButton.setTitleColor(.white, for: .normal)
-//            } else {
-//                self.registerButton.backgroundColor = .lightGray
-//                self.registerButton.setTitleColor(.gray, for: .normal)
-//            }
-//
-//        }
-        
-//        registrationViewModel.imageObserver = { [unowned self] img in
-//            self.selectPhotoButton.setImage(img?.withRenderingMode(.alwaysOriginal), for: .normal)
-//        }
     }
     
     fileprivate func setupTapGesture() {
@@ -244,15 +236,32 @@ class RegistrationController: UIViewController {
         }
     }
     
+    let goToLoginButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("Go to Login", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .heavy)
+        button.addTarget(self, action: #selector(handleGoToLogin), for: .touchUpInside)
+        return button
+    }()
+    
+    @objc fileprivate func handleGoToLogin() {
+        let loginController = LoginController()
+        navigationController?.pushViewController(loginController, animated: true)
+    }
+    
     fileprivate func setupLayout() {
+        navigationController?.isNavigationBarHidden = true
+        
         view.addSubview(overallStackView)
         
-        overallStackView.axis = .horizontal
-        
-        selectPhotoButton.widthAnchor.constraint(equalToConstant: 275).isActive = true
+        overallStackView.axis = .vertical
         overallStackView.spacing = 8
         overallStackView.anchor(top: nil, leading: view.leadingAnchor, bottom: nil, trailing: view.trailingAnchor, padding: .init(top: 0, left: 50, bottom: 0, right: 50))
         overallStackView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        
+        view.addSubview(goToLoginButton)
+        goToLoginButton.anchor(top: nil, leading: view.leadingAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, trailing: view.trailingAnchor)
     }
     
     let gradientLayer = CAGradientLayer()
@@ -263,8 +272,8 @@ class RegistrationController: UIViewController {
     }
     
     fileprivate func setupGradientLayer() {
-        let topColor = #colorLiteral(red: 0.9098039269, green: 0.4784313738, blue: 0.6431372762, alpha: 1)
-        let bottomColor = #colorLiteral(red: 0.8549019694, green: 0.250980407, blue: 0.4784313738, alpha: 1)
+        let topColor = #colorLiteral(red: 0.9921568627, green: 0.3568627451, blue: 0.3725490196, alpha: 1)
+        let bottomColor = #colorLiteral(red: 0.8980392157, green: 0, blue: 0.4470588235, alpha: 1)
         // make sure to use cgColor
         gradientLayer.colors = [topColor.cgColor, bottomColor.cgColor]
         gradientLayer.locations = [0, 1]
