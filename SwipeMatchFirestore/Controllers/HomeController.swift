@@ -69,7 +69,8 @@ class HomeController: UIViewController, SettingsControllerDelegate, LoginControl
     var lastFetchedUser: User?
     
     fileprivate func fetchUsersFromFirestore() {
-        guard let minAge = user?.minSeekingAge, let maxAge = user?.maxSeekingAge else { return }
+        let minAge = user?.minSeekingAge ?? SettingsController.defaultMinSeekingAge
+        let maxAge = user?.maxSeekingAge ?? SettingsController.defaultMaxSeekingAge
         
         let query = Firestore.firestore().collection("users").whereField("age", isGreaterThanOrEqualTo: minAge).whereField("age", isLessThanOrEqualTo: maxAge)
         query.getDocuments { (snapshot, err) in
@@ -85,9 +86,6 @@ class HomeController: UIViewController, SettingsControllerDelegate, LoginControl
                 if user.uid != Auth.auth().currentUser?.uid {
                     self.setupCardFromUser(user: user)
                 }
-                
-//                self.cardViewModels.append(user.toCardViewModel())
-//                self.lastFetchedUser = user
             })
         }
     }
