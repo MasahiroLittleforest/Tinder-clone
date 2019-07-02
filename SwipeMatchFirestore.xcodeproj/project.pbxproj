@@ -35,6 +35,7 @@
 		447FEBCE22BE000B00CD2A4E /* Bindable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447FEBCD22BE000B00CD2A4E /* Bindable.swift */; };
 		447FEBD022BF83C700CD2A4E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 447FEBCF22BF83C700CD2A4E /* GoogleService-Info.plist */; };
 		447FEBD222BF84C900CD2A4E /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447FEBD122BF84C900CD2A4E /* SettingsController.swift */; };
+		44B04B0922CB44FF00294772 /* PhotoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B04B0822CB44FF00294772 /* PhotoController.swift */; };
 		44CD993422C2128400620E6D /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CD993322C2128400620E6D /* SettingsCell.swift */; };
 		5B2F8160EBE208D9A87D9B94 /* Pods_SwipeMatchFirestoreTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AE54B90912240A8FE99287F /* Pods_SwipeMatchFirestoreTests.framework */; };
 /* End PBXBuildFile section */
@@ -92,6 +93,7 @@
 		447FEBCD22BE000B00CD2A4E /* Bindable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bindable.swift; sourceTree = "<group>"; };
 		447FEBCF22BF83C700CD2A4E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		447FEBD122BF84C900CD2A4E /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
+		44B04B0822CB44FF00294772 /* PhotoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoController.swift; sourceTree = "<group>"; };
 		44CD993322C2128400620E6D /* SettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCell.swift; sourceTree = "<group>"; };
 		6100D70E141FFF9E4B5FA792 /* Pods-SwipeMatchFirestoreTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwipeMatchFirestoreTests.debug.xcconfig"; path = "Target Support Files/Pods-SwipeMatchFirestoreTests/Pods-SwipeMatchFirestoreTests.debug.xcconfig"; sourceTree = "<group>"; };
 		692FCAB99FDE7720A599722A /* Pods-SwipeMatchFirestoreUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwipeMatchFirestoreUITests.release.xcconfig"; path = "Target Support Files/Pods-SwipeMatchFirestoreUITests/Pods-SwipeMatchFirestoreUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -254,6 +256,7 @@
 			children = (
 				4460C41022C7BC810042AC61 /* UserDetailsController.swift */,
 				4460C41222C899C80042AC61 /* SwipingPhotosController.swift */,
+				44B04B0822CB44FF00294772 /* PhotoController.swift */,
 			);
 			path = "User Details";
 			sourceTree = "<group>";
@@ -519,6 +522,7 @@
 				44441DF822BBBEE4005960B6 /* CardViewModel.swift in Sources */,
 				44441DF022BA9A2D005960B6 /* CardView.swift in Sources */,
 				447FEBD222BF84C900CD2A4E /* SettingsController.swift in Sources */,
+				44B04B0922CB44FF00294772 /* PhotoController.swift in Sources */,
 				44441DEE22BA8BDC005960B6 /* TopNavigationStackView.swift in Sources */,
 				44441DFC22BCCB54005960B6 /* RegistrationController.swift in Sources */,
 				44441DF322BB8F8F005960B6 /* User.swift in Sources */,
