@@ -11,9 +11,12 @@ import SDWebImage
 
 protocol CardViewDelegate {
     func didTapMoreInfo(cardViewModel: CardViewModel)
+    func didRemoveCard(cardView: CardView)
 }
 
 class CardView: UIView {
+    
+    var nextCardView: CardView?
     
     var delegate: CardViewDelegate?
     
@@ -55,8 +58,6 @@ class CardView: UIView {
     }
     
     // encapsulation
-//    fileprivate let imageView = UIImageView(image: #imageLiteral(resourceName: "lady5c"))
-    
     fileprivate let swipingPhotosController = SwipingPhotosController(isCardViewMode: true)
     
     fileprivate let gradientLayer = CAGradientLayer()
@@ -115,7 +116,6 @@ class CardView: UIView {
         setupGradientLayer()
         
         addSubview(informationLabel)
-        //        informationLabel.anchor(top: nil, leading: leadingAnchor, bottom: bottomAnchor, trailing: trailingAnchor)
         
         informationLabel.anchor(top: nil, leading: leadingAnchor, bottom: bottomAnchor, trailing: trailingAnchor, padding: .init(top: 0, left: 16, bottom: 16, right: 16))
         
@@ -191,8 +191,9 @@ class CardView: UIView {
             self.transform = .identity
             if shouldDismissCard {
                 self.removeFromSuperview()
+                
+                self.delegate?.didRemoveCard(cardView: self)
             }
-//            self.frame = CGRect(x: 0, y: 0, width: self.superview!.frame.width, height: self.superview!.frame.height)
         }
     }
     
