@@ -7,8 +7,41 @@
 //
 
 import UIKit
+import Firebase
 
 class MatchView: UIView {
+    
+    var currentUser: User! {
+        didSet {
+            
+        }
+    }
+    
+    var cardUID: String! {
+        didSet {
+            // fetch the cardUID information
+            let query = Firestore.firestore().collection("users")
+            query.document(cardUID).getDocument { (snapshot, err) in
+                if let err = err {
+                    print("Failed to fetch card user:", err)
+                    return
+                }
+                
+                guard let dictionary = snapshot?.data() else { return }
+                let user = User(dictionary: dictionary)
+                guard let url = URL(string: user.imageUrl1 ?? "") else { return }
+                self.cardUserImageView.sd_setImage(with: url)
+                
+                guard let currentUserImageUrl = URL(string: self.currentUser.imageUrl1 ?? "") else { return }
+                
+                self.currentUserImageView.sd_setImage(with: currentUserImageUrl, completed: { (_, _, _, _) in
+                    self.setupAnimations()
+                })
+                
+                self.descriptionLabel.text = "You and \(user.name ?? "") have liked\neach other."
+            }
+        }
+    }
     
     fileprivate let itsAMatchImageView: UIImageView = {
         let iv = UIImageView(image: #imageLiteral(resourceName: "itsamatch"))
@@ -41,6 +74,7 @@ class MatchView: UIView {
         imageView.clipsToBounds = true
         imageView.layer.borderWidth = 2
         imageView.layer.borderColor = UIColor.white.cgColor
+        imageView.alpha = 0
         return imageView
     }()
     
@@ -64,10 +98,12 @@ class MatchView: UIView {
         setupBlurView()
         
         setupLayout()
-        setupAnimations()
+//        setupAnimations()
     }
     
     fileprivate func setupAnimations() {
+        views.forEach({$0.alpha = 1})
+        
         let angle = 30 * CGFloat.pi / 180
         currentUserImageView.transform = CGAffineTransform(rotationAngle: -angle).concatenating(CGAffineTransform(translationX: 200, y: 0))
         cardUserImageView.transform = CGAffineTransform(rotationAngle: angle).concatenating(CGAffineTransform(translationX: -200, y: 0))
@@ -98,13 +134,20 @@ class MatchView: UIView {
         })
     }
     
+    lazy var views = [
+        itsAMatchImageView,
+        descriptionLabel,
+        currentUserImageView,
+        cardUserImageView,
+        sendMessageButton,
+        self.keepSwipingButton,
+    ]
+    
     fileprivate func setupLayout() {
-        addSubview(itsAMatchImageView)
-        addSubview(descriptionLabel)
-        addSubview(currentUserImageView)
-        addSubview(cardUserImageView)
-        addSubview(sendMessageButton)
-        addSubview(keepSwipingButton)
+        views.forEach { (v) in
+            addSubview(v)
+            v.alpha = 0
+        }
         
         let imageWidth: CGFloat = 140
         
