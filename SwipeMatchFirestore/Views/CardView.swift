@@ -22,11 +22,6 @@ class CardView: UIView {
     
     var cardViewModel: CardViewModel! {
         didSet {
-//            let imageName = cardViewModel.imageUrls.first ?? ""
-//            if let url = URL(string: imageName) {
-//                imageView.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "photo_placeholder"), options: .continueInBackground)
-//            }
-            
             swipingPhotosController.cardViewModel = self.cardViewModel
             
             informationLabel.attributedText = cardViewModel.attributedString
@@ -45,11 +40,6 @@ class CardView: UIView {
     
     fileprivate func setupImageIndexObserver() {
         cardViewModel.imageIndexObserver = { [weak self] (idx, imageUrl) in
-            print("Changing photo from view model")
-//            if let url = URL(string: imageUrl ?? "") {
-//                self?.imageView.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "photo_placeholder"), options: .continueInBackground)
-//            }
-            
             self?.barsStackView.arrangedSubviews.forEach({ (v) in
                 v.backgroundColor = self?.barDeselectedColor
             })
@@ -180,21 +170,35 @@ class CardView: UIView {
         let translationDirection: CGFloat = gesture.translation(in: nil).x > 0 ? 1 : -1
         let shouldDismissCard = abs(gesture.translation(in: nil).x) > threshold
         
-        UIView.animate(withDuration: 1, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.1, options: .curveEaseOut, animations: {
-            if shouldDismissCard {
-                self.frame = CGRect(x: 600 * translationDirection, y: 0, width: self.frame.width, height: self.frame.height)
-            } else {
-                self.transform = .identity
-            }
+        if shouldDismissCard {
+            guard let homeController = self.delegate as? HomeController else { return }
             
-        }) { (_) in
-            self.transform = .identity
-            if shouldDismissCard {
-                self.removeFromSuperview()
-                
-                self.delegate?.didRemoveCard(cardView: self)
+            if translationDirection == 1 {
+                homeController.handleLike()
+            } else {
+                homeController.handleDislike()
             }
+        } else {
+            UIView.animate(withDuration: 1, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.1, options: .curveEaseOut, animations: {
+                self.transform = .identity
+            })
         }
+        
+//        UIView.animate(withDuration: 1, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.1, options: .curveEaseOut, animations: {
+//            if shouldDismissCard {
+//                self.frame = CGRect(x: 600 * translationDirection, y: 0, width: self.frame.width, height: self.frame.height)
+//            } else {
+//                self.transform = .identity
+//            }
+//
+//        }) { (_) in
+//            self.transform = .identity
+//            if shouldDismissCard {
+//                self.removeFromSuperview()
+//
+//                self.delegate?.didRemoveCard(cardView: self)
+//            }
+//        }
     }
     
     required init?(coder aDecoder: NSCoder) {
