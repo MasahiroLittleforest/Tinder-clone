@@ -27,6 +27,7 @@
 		44441E0022BD3B6D005960B6 /* RegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44441DFF22BD3B6D005960B6 /* RegistrationViewModel.swift */; };
 		444D72FB22CCD93500146FBF /* KeepSwipingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444D72FA22CCD93500146FBF /* KeepSwipingButton.swift */; };
 		445D42E622CDFA8500C88A13 /* MatchesMessagesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445D42E522CDFA8500C88A13 /* MatchesMessagesController.swift */; };
+		445D42E822CF13D600C88A13 /* MatchesNavBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445D42E722CF13D600C88A13 /* MatchesNavBar.swift */; };
 		4460C40622C740380042AC61 /* AgeRangeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4460C40522C740380042AC61 /* AgeRangeCell.swift */; };
 		4460C40822C78B920042AC61 /* Firebase+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4460C40722C78B920042AC61 /* Firebase+Utils.swift */; };
 		4460C40D22C7936A0042AC61 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4460C40B22C7936A0042AC61 /* LoginViewModel.swift */; };
@@ -88,6 +89,7 @@
 		44441DFF22BD3B6D005960B6 /* RegistrationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewModel.swift; sourceTree = "<group>"; };
 		444D72FA22CCD93500146FBF /* KeepSwipingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeepSwipingButton.swift; sourceTree = "<group>"; };
 		445D42E522CDFA8500C88A13 /* MatchesMessagesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchesMessagesController.swift; sourceTree = "<group>"; };
+		445D42E722CF13D600C88A13 /* MatchesNavBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchesNavBar.swift; sourceTree = "<group>"; };
 		4460C40522C740380042AC61 /* AgeRangeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgeRangeCell.swift; sourceTree = "<group>"; };
 		4460C40722C78B920042AC61 /* Firebase+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Firebase+Utils.swift"; sourceTree = "<group>"; };
 		4460C40B22C7936A0042AC61 /* LoginViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
@@ -215,6 +217,7 @@
 				44CB77EF22CC7AA700284385 /* MatchView.swift */,
 				44CB77F122CC92CA00284385 /* SendMessageButton.swift */,
 				444D72FA22CCD93500146FBF /* KeepSwipingButton.swift */,
+				445D42E722CF13D600C88A13 /* MatchesNavBar.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -548,6 +551,7 @@
 				44CB77F222CC92CA00284385 /* SendMessageButton.swift in Sources */,
 				44CD993422C2128400620E6D /* SettingsCell.swift in Sources */,
 				4460C41322C899C80042AC61 /* SwipingPhotosController.swift in Sources */,
+				445D42E822CF13D600C88A13 /* MatchesNavBar.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
