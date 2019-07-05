@@ -16,7 +16,6 @@
 		44441DC222BA790B005960B6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 44441DC022BA790B005960B6 /* LaunchScreen.storyboard */; };
 		44441DCD22BA790B005960B6 /* SwipeMatchFirestoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44441DCC22BA790B005960B6 /* SwipeMatchFirestoreTests.swift */; };
 		44441DD822BA790B005960B6 /* SwipeMatchFirestoreUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44441DD722BA790B005960B6 /* SwipeMatchFirestoreUITests.swift */; };
-		44441DE722BA7DBF005960B6 /* Extensions+UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44441DE622BA7DBF005960B6 /* Extensions+UIView.swift */; };
 		44441DEC22BA8599005960B6 /* HomeBottomControlsStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44441DEB22BA8599005960B6 /* HomeBottomControlsStackView.swift */; };
 		44441DEE22BA8BDC005960B6 /* TopNavigationStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44441DED22BA8BDC005960B6 /* TopNavigationStackView.swift */; };
 		44441DF022BA9A2D005960B6 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44441DEF22BA9A2D005960B6 /* CardView.swift */; };
@@ -27,6 +26,7 @@
 		44441DFE22BCD697005960B6 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44441DFD22BCD697005960B6 /* CustomTextField.swift */; };
 		44441E0022BD3B6D005960B6 /* RegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44441DFF22BD3B6D005960B6 /* RegistrationViewModel.swift */; };
 		444D72FB22CCD93500146FBF /* KeepSwipingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444D72FA22CCD93500146FBF /* KeepSwipingButton.swift */; };
+		445D42E622CDFA8500C88A13 /* MatchesMessagesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445D42E522CDFA8500C88A13 /* MatchesMessagesController.swift */; };
 		4460C40622C740380042AC61 /* AgeRangeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4460C40522C740380042AC61 /* AgeRangeCell.swift */; };
 		4460C40822C78B920042AC61 /* Firebase+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4460C40722C78B920042AC61 /* Firebase+Utils.swift */; };
 		4460C40D22C7936A0042AC61 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4460C40B22C7936A0042AC61 /* LoginViewModel.swift */; };
@@ -77,7 +77,6 @@
 		44441DD322BA790B005960B6 /* SwipeMatchFirestoreUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwipeMatchFirestoreUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		44441DD722BA790B005960B6 /* SwipeMatchFirestoreUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeMatchFirestoreUITests.swift; sourceTree = "<group>"; };
 		44441DD922BA790B005960B6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		44441DE622BA7DBF005960B6 /* Extensions+UIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extensions+UIView.swift"; sourceTree = "<group>"; };
 		44441DEB22BA8599005960B6 /* HomeBottomControlsStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeBottomControlsStackView.swift; sourceTree = "<group>"; };
 		44441DED22BA8BDC005960B6 /* TopNavigationStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopNavigationStackView.swift; sourceTree = "<group>"; };
 		44441DEF22BA9A2D005960B6 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
@@ -88,6 +87,7 @@
 		44441DFD22BCD697005960B6 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		44441DFF22BD3B6D005960B6 /* RegistrationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewModel.swift; sourceTree = "<group>"; };
 		444D72FA22CCD93500146FBF /* KeepSwipingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeepSwipingButton.swift; sourceTree = "<group>"; };
+		445D42E522CDFA8500C88A13 /* MatchesMessagesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchesMessagesController.swift; sourceTree = "<group>"; };
 		4460C40522C740380042AC61 /* AgeRangeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgeRangeCell.swift; sourceTree = "<group>"; };
 		4460C40722C78B920042AC61 /* Firebase+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Firebase+Utils.swift"; sourceTree = "<group>"; };
 		4460C40B22C7936A0042AC61 /* LoginViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
@@ -198,7 +198,6 @@
 		44441DE522BA7CE1005960B6 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				44441DE622BA7DBF005960B6 /* Extensions+UIView.swift */,
 				4460C40722C78B920042AC61 /* Firebase+Utils.swift */,
 			);
 			path = Extensions;
@@ -232,6 +231,7 @@
 		44441DF422BBBD94005960B6 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				445D42E422CDFA5200C88A13 /* MatchesMessages */,
 				4460C40F22C7BC470042AC61 /* User Details */,
 				4460C40A22C793130042AC61 /* Login */,
 				44441DB922BA790A005960B6 /* HomeController.swift */,
@@ -249,6 +249,14 @@
 				44441DF722BBBEE4005960B6 /* CardViewModel.swift */,
 			);
 			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		445D42E422CDFA5200C88A13 /* MatchesMessages */ = {
+			isa = PBXGroup;
+			children = (
+				445D42E522CDFA8500C88A13 /* MatchesMessagesController.swift */,
+			);
+			path = MatchesMessages;
 			sourceTree = "<group>";
 		};
 		4460C40A22C793130042AC61 /* Login */ = {
@@ -528,7 +536,7 @@
 				44441DB822BA790A005960B6 /* AppDelegate.swift in Sources */,
 				4460C40622C740380042AC61 /* AgeRangeCell.swift in Sources */,
 				4460C40D22C7936A0042AC61 /* LoginViewModel.swift in Sources */,
-				44441DE722BA7DBF005960B6 /* Extensions+UIView.swift in Sources */,
+				445D42E622CDFA8500C88A13 /* MatchesMessagesController.swift in Sources */,
 				4460C40822C78B920042AC61 /* Firebase+Utils.swift in Sources */,
 				44441DF822BBBEE4005960B6 /* CardViewModel.swift in Sources */,
 				44441DF022BA9A2D005960B6 /* CardView.swift in Sources */,
