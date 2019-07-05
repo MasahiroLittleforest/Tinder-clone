@@ -47,15 +47,15 @@ class MatchesMessagesController: LBTAListController<MatchCell, Match>, UICollect
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return .init(width: 120, height: 140)
     }
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let match = items[indexPath.item]
+        let chatLogController = ChatLogController(match: match)
+        navigationController?.pushViewController(chatLogController, animated: true)
+    }
         
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        items = [
-//            .init(name: "test", profileImageUrl: "profile url"),
-//            .init(name: "1", profileImageUrl: "https://firebasestorage.googleapis.com/v0/b/swipematchfirestore-9650a.appspot.com/o/images%2FDB4F63E9-E984-437F-A4CE-69A1632E9EC0?alt=media&token=a9e939ae-23dd-4c61-b8b2-25889db333a6"),
-//            .init(name: "2", profileImageUrl: "https://firebasestorage.googleapis.com/v0/b/swipematchfirestore-9650a.appspot.com/o/images%2F7A8CDDE6-6A05-4881-AD3F-8816020376CB?alt=media&token=8a37b697-6ad1-4168-93ab-364475264b22")
-//        ]
         
         fetchMatches()
         
