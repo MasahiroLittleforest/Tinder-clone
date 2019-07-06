@@ -8,63 +8,6 @@
 
 import LBTATools
 
-struct Message {
-    let text: String
-    let isFromCurrentLoggedUser: Bool
-}
-
-class MessageCell: LBTAListCell<Message> {
-    let textView: UITextView = {
-        let tv = UITextView()
-        tv.backgroundColor = .clear
-        tv.font = .systemFont(ofSize: 20)
-        tv.isScrollEnabled = false
-        tv.isEditable = false
-        return tv
-    }()
-    
-    let bubbleContainer = UIView(backgroundColor: #colorLiteral(red: 0.9005706906, green: 0.9012550712, blue: 0.9006766677, alpha: 1))
-    
-    override var item: Message! {
-        didSet {
-            textView.text = item.text
-            
-            if item.isFromCurrentLoggedUser {
-                // right edge
-                anchoredConstraints.trailing?.isActive = true
-                anchoredConstraints.leading?.isActive = false
-                bubbleContainer.backgroundColor = #colorLiteral(red: 0.1471898854, green: 0.8059007525, blue: 0.9965714812, alpha: 1)
-                textView.textColor = .white
-            } else {
-                // left edge
-                anchoredConstraints.trailing?.isActive = false
-                anchoredConstraints.leading?.isActive = true
-                bubbleContainer.backgroundColor = #colorLiteral(red: 0.9005706906, green: 0.9012550712, blue: 0.9006766677, alpha: 1)
-                textView.textColor = .black
-            }
-        }
-    }
-    
-    var anchoredConstraints: AnchoredConstraints!
-    
-    override func setupViews() {
-        super.setupViews()
-        
-        addSubview(bubbleContainer)
-        bubbleContainer.layer.cornerRadius = 12
-        
-        anchoredConstraints = bubbleContainer.anchor(top: topAnchor, leading: leadingAnchor, bottom: bottomAnchor, trailing: trailingAnchor)
-        anchoredConstraints.leading?.constant = 20
-        anchoredConstraints.trailing?.isActive = false
-        anchoredConstraints.trailing?.constant = -20
-        
-        bubbleContainer.widthAnchor.constraint(lessThanOrEqualToConstant: 250).isActive = true
-        
-        bubbleContainer.addSubview(textView)
-        textView.fillSuperview(padding: .init(top: 4, left: 12, bottom: 4, right: 12))
-    }
-}
-
 class ChatLogController: LBTAListController<MessageCell, Message>, UICollectionViewDelegateFlowLayout {
     fileprivate lazy var customNavBar = MessagesNavBar(match: self.match)
     
@@ -77,10 +20,69 @@ class ChatLogController: LBTAListController<MessageCell, Message>, UICollectionV
         super.init()
     }
     
+    class CustomInputAccessoryView: UIView {
+        let textView = UITextView()
+        let sendButton = UIButton(title: "SEND", titleColor: .black, font: .boldSystemFont(ofSize: 14), target: nil, action: nil)
+        let placeholderLabel = UILabel(text: "Enter Message", font: .systemFont(ofSize: 16), textColor: .lightGray)
+        
+        override var intrinsicContentSize: CGSize {
+            return .zero
+        }
+        
+        override init(frame: CGRect) {
+            super.init(frame: frame)
+            
+            backgroundColor = .white
+            setupShadow(opacity: 0.1, radius: 8, offset: .init(width: 0, height: -8), color: .lightGray)
+            autoresizingMask = .flexibleHeight
+            
+            textView.isScrollEnabled = false
+            textView.font = .systemFont(ofSize: 16)
+            
+            NotificationCenter.default.addObserver(self, selector: #selector(handleTextChange), name: UITextView.textDidChangeNotification, object: nil)
+            
+            hstack(
+                textView,
+                sendButton.withSize(.init(width: 60, height: 60)),
+                alignment: .center
+            ).withMargins(.init(top: 0, left: 16, bottom: 0, right: 16))
+            
+            addSubview(placeholderLabel)
+            placeholderLabel.anchor(top: nil, leading: leadingAnchor, bottom: nil, trailing: sendButton.leadingAnchor, padding: .init(top: 0, left: 20, bottom: 0, right: 0))
+            placeholderLabel.centerYAnchor.constraint(equalTo: sendButton.centerYAnchor).isActive = true
+        }
+        
+        @objc fileprivate func handleTextChange() {
+            placeholderLabel.isHidden = textView.text.count != 0
+        }
+        
+        deinit {
+            NotificationCenter.default.removeObserver(self)
+        }
+        
+        required init?(coder aDecoder: NSCoder) {
+            fatalError("init(coder:) has not been implemented")
+        }
+    }
+    
+    lazy var redView: UIView = {
+        return CustomInputAccessoryView(frame: .init(x: 0, y: 0, width: view.frame.width, height: 50))
+    }()
+    
+    override var inputAccessoryView: UIView? {
+        get {
+            return redView
+        }
+    }
+    
+    override var canBecomeFirstResponder: Bool {
+        return true
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        collectionView.alwaysBounceVertical = true
+        collectionView.keyboardDismissMode = .interactive
         
         items = [
             .init(text: "For this lesson, let's talk all about auto sizing message cells and how to shift alignment from left to right.  Doing the alignment correctly within one cell makes it very easy to toggle things based on a chat message's properties later on.  We'll also look at some bug fixes at the end.", isFromCurrentLoggedUser: true),
@@ -89,6 +91,11 @@ class ChatLogController: LBTAListController<MessageCell, Message>, UICollectionV
             .init(text: "Our application in its current state only supports a single card in the deck. Why don't we expand the functionality a bit by adding in multiple cards?  To do this cleanly, let's take a look at how we could define a model object to encapsulate all of the information for a card.  The information we decide to include in our model should not contain more than what is necessary for now.", isFromCurrentLoggedUser: false)
         ]
         
+        setupUI()
+    }
+    
+    fileprivate func setupUI() {
+        collectionView.alwaysBounceVertical = true
         view.addSubview(customNavBar)
         customNavBar.anchor(top: view.safeAreaLayoutGuide.topAnchor, leading: view.leadingAnchor, bottom: nil, trailing: view.trailingAnchor, size: .init(width: 0, height: navBarHeight))
         
