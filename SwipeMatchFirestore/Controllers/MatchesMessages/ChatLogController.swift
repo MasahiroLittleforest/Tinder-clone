@@ -7,6 +7,7 @@
 //
 
 import LBTATools
+import Firebase
 
 class ChatLogController: LBTAListController<MessageCell, Message>, UICollectionViewDelegateFlowLayout {
     fileprivate lazy var customNavBar = MessagesNavBar(match: self.match)
@@ -20,58 +21,47 @@ class ChatLogController: LBTAListController<MessageCell, Message>, UICollectionV
         super.init()
     }
     
-    class CustomInputAccessoryView: UIView {
-        let textView = UITextView()
-        let sendButton = UIButton(title: "SEND", titleColor: .black, font: .boldSystemFont(ofSize: 14), target: nil, action: nil)
-        let placeholderLabel = UILabel(text: "Enter Message", font: .systemFont(ofSize: 16), textColor: .lightGray)
+    lazy var customInputView: CustomInputAccessoryView = {
+        let civ = CustomInputAccessoryView(frame: .init(x: 0, y: 0, width: view.frame.width, height: 50))
+        civ.sendButton.addTarget(self, action: #selector(handleSend), for: .touchUpInside)
+        return civ
+    }()
+    
+    @objc fileprivate func handleSend() {
+        print(customInputView.textView.text ?? "")
         
-        override var intrinsicContentSize: CGSize {
-            return .zero
+        guard let currentUserId = Auth.auth().currentUser?.uid else { return }
+        let collection = Firestore.firestore().collection("matches_messages").document(currentUserId).collection(match.uid)
+        let data = ["text": customInputView.textView.text ?? "", "fromId": currentUserId, "toId": match.uid, "timestamp": Timestamp(date: Date())] as [String : Any]
+        
+        collection.addDocument(data: data) { (err) in
+            if let err = err {
+                print("Failed to save message:", err)
+                return
+            }
+            
+            print("Successfully saved message into Firestore")
+            self.customInputView.textView.text = nil
+            self.customInputView.placeholderLabel.isHidden = false
         }
         
-        override init(frame: CGRect) {
-            super.init(frame: frame)
-            
-            backgroundColor = .white
-            setupShadow(opacity: 0.1, radius: 8, offset: .init(width: 0, height: -8), color: .lightGray)
-            autoresizingMask = .flexibleHeight
-            
-            textView.isScrollEnabled = false
-            textView.font = .systemFont(ofSize: 16)
-            
-            NotificationCenter.default.addObserver(self, selector: #selector(handleTextChange), name: UITextView.textDidChangeNotification, object: nil)
-            
-            hstack(
-                textView,
-                sendButton.withSize(.init(width: 60, height: 60)),
-                alignment: .center
-            ).withMargins(.init(top: 0, left: 16, bottom: 0, right: 16))
-            
-            addSubview(placeholderLabel)
-            placeholderLabel.anchor(top: nil, leading: leadingAnchor, bottom: nil, trailing: sendButton.leadingAnchor, padding: .init(top: 0, left: 20, bottom: 0, right: 0))
-            placeholderLabel.centerYAnchor.constraint(equalTo: sendButton.centerYAnchor).isActive = true
-        }
+        let toCollection = Firestore.firestore().collection("matches_messages").document(match.uid).collection(currentUserId)
         
-        @objc fileprivate func handleTextChange() {
-            placeholderLabel.isHidden = textView.text.count != 0
-        }
-        
-        deinit {
-            NotificationCenter.default.removeObserver(self)
-        }
-        
-        required init?(coder aDecoder: NSCoder) {
-            fatalError("init(coder:) has not been implemented")
+        toCollection.addDocument(data: data) { (err) in
+            if let err = err {
+                print("Failed to save message:", err)
+                return
+            }
+            
+            print("Successfully saved message into Firestore")
+            self.customInputView.textView.text = nil
+            self.customInputView.placeholderLabel.isHidden = false
         }
     }
     
-    lazy var redView: UIView = {
-        return CustomInputAccessoryView(frame: .init(x: 0, y: 0, width: view.frame.width, height: 50))
-    }()
-    
     override var inputAccessoryView: UIView? {
         get {
-            return redView
+            return customInputView
         }
     }
     
@@ -79,19 +69,43 @@ class ChatLogController: LBTAListController<MessageCell, Message>, UICollectionV
         return true
     }
     
+    fileprivate func fetchMessages() {
+        print("Fetching messages")
+        
+        guard let currentUserId = Auth.auth().currentUser?.uid else { return }
+        let query = Firestore.firestore().collection("matches_messages").document(currentUserId).collection(match.uid).order(by: "timestamp")
+        query.addSnapshotListener { (querySnapshot, err) in
+            if let err = err {
+                print("Failed to fetch messages:", err)
+                return
+            }
+            
+            querySnapshot?.documentChanges.forEach({ (change) in
+                if change.type == .added {
+                    let dictionary = change.document.data()
+                    self.items.append(.init(dictionary: dictionary))
+                }
+            })
+            
+            self.collectionView.reloadData()
+            self.collectionView.scrollToItem(at: [0, self.items.count - 1], at: .bottom, animated: true)
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardShow), name: UIResponder.keyboardDidShowNotification, object: nil)
+        
         collectionView.keyboardDismissMode = .interactive
         
-        items = [
-            .init(text: "For this lesson, let's talk all about auto sizing message cells and how to shift alignment from left to right.  Doing the alignment correctly within one cell makes it very easy to toggle things based on a chat message's properties later on.  We'll also look at some bug fixes at the end.", isFromCurrentLoggedUser: true),
-            .init(text: "Hello bud", isFromCurrentLoggedUser: false),
-            .init(text: "Hello from the Tinder course", isFromCurrentLoggedUser: true),
-            .init(text: "Our application in its current state only supports a single card in the deck. Why don't we expand the functionality a bit by adding in multiple cards?  To do this cleanly, let's take a look at how we could define a model object to encapsulate all of the information for a card.  The information we decide to include in our model should not contain more than what is necessary for now.", isFromCurrentLoggedUser: false)
-        ]
+        fetchMessages()
         
         setupUI()
+    }
+    
+    @objc fileprivate func handleKeyboardShow() {
+        self.collectionView.scrollToItem(at: [0, items.count - 1], at: .bottom, animated: true)
     }
     
     fileprivate func setupUI() {

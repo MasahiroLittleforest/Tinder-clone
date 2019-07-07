@@ -39,6 +39,7 @@
 		447FEBCE22BE000B00CD2A4E /* Bindable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447FEBCD22BE000B00CD2A4E /* Bindable.swift */; };
 		447FEBD022BF83C700CD2A4E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 447FEBCF22BF83C700CD2A4E /* GoogleService-Info.plist */; };
 		447FEBD222BF84C900CD2A4E /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447FEBD122BF84C900CD2A4E /* SettingsController.swift */; };
+		448B48C522D1BA4300F9A384 /* CustomInputAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448B48C422D1BA4300F9A384 /* CustomInputAccessoryView.swift */; };
 		44B04B0922CB44FF00294772 /* PhotoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B04B0822CB44FF00294772 /* PhotoController.swift */; };
 		44C2DAF722D0E787001800EE /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C2DAF622D0E787001800EE /* MessageCell.swift */; };
 		44C2DAF922D0E7C4001800EE /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C2DAF822D0E7C4001800EE /* Message.swift */; };
@@ -105,6 +106,7 @@
 		447FEBCD22BE000B00CD2A4E /* Bindable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bindable.swift; sourceTree = "<group>"; };
 		447FEBCF22BF83C700CD2A4E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		447FEBD122BF84C900CD2A4E /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
+		448B48C422D1BA4300F9A384 /* CustomInputAccessoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomInputAccessoryView.swift; sourceTree = "<group>"; };
 		44B04B0822CB44FF00294772 /* PhotoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoController.swift; sourceTree = "<group>"; };
 		44C2DAF622D0E787001800EE /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
 		44C2DAF822D0E7C4001800EE /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
@@ -278,6 +280,7 @@
 			children = (
 				445D42EC22CF62BA00C88A13 /* MessagesNavbar.swift */,
 				44C2DAF622D0E787001800EE /* MessageCell.swift */,
+				448B48C422D1BA4300F9A384 /* CustomInputAccessoryView.swift */,
 			);
 			path = MatchesMessages;
 			sourceTree = "<group>";
@@ -560,6 +563,7 @@
 				44441DB822BA790A005960B6 /* AppDelegate.swift in Sources */,
 				4460C40622C740380042AC61 /* AgeRangeCell.swift in Sources */,
 				445D42ED22CF62BA00C88A13 /* MessagesNavbar.swift in Sources */,
+				448B48C522D1BA4300F9A384 /* CustomInputAccessoryView.swift in Sources */,
 				4460C40D22C7936A0042AC61 /* LoginViewModel.swift in Sources */,
 				445D42E622CDFA8500C88A13 /* MatchesMessagesController.swift in Sources */,
 				4460C40822C78B920042AC61 /* Firebase+Utils.swift in Sources */,
