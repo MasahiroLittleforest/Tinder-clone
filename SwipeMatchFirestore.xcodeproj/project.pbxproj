@@ -38,6 +38,8 @@
 		4460C41322C899C80042AC61 /* SwipingPhotosController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4460C41222C899C80042AC61 /* SwipingPhotosController.swift */; };
 		4460F28D22D367D7003D826D /* MatchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4460F28C22D367D7003D826D /* MatchCell.swift */; };
 		4460F28F22D3682F003D826D /* Match.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4460F28E22D3682F003D826D /* Match.swift */; };
+		4460F29122D37819003D826D /* MatchesHorizontalController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4460F29022D37819003D826D /* MatchesHorizontalController.swift */; };
+		4460F29322D3794D003D826D /* MatchesHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4460F29222D3794D003D826D /* MatchesHeader.swift */; };
 		447FEBCE22BE000B00CD2A4E /* Bindable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447FEBCD22BE000B00CD2A4E /* Bindable.swift */; };
 		447FEBD022BF83C700CD2A4E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 447FEBCF22BF83C700CD2A4E /* GoogleService-Info.plist */; };
 		447FEBD222BF84C900CD2A4E /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447FEBD122BF84C900CD2A4E /* SettingsController.swift */; };
@@ -107,6 +109,8 @@
 		4460C41222C899C80042AC61 /* SwipingPhotosController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipingPhotosController.swift; sourceTree = "<group>"; };
 		4460F28C22D367D7003D826D /* MatchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchCell.swift; sourceTree = "<group>"; };
 		4460F28E22D3682F003D826D /* Match.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Match.swift; sourceTree = "<group>"; };
+		4460F29022D37819003D826D /* MatchesHorizontalController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchesHorizontalController.swift; sourceTree = "<group>"; };
+		4460F29222D3794D003D826D /* MatchesHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchesHeader.swift; sourceTree = "<group>"; };
 		447FEBCD22BE000B00CD2A4E /* Bindable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bindable.swift; sourceTree = "<group>"; };
 		447FEBCF22BF83C700CD2A4E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		447FEBD122BF84C900CD2A4E /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
@@ -276,6 +280,7 @@
 			children = (
 				445D42E522CDFA8500C88A13 /* MatchesMessagesController.swift */,
 				445D42E922CF55C700C88A13 /* ChatLogController.swift */,
+				4460F29022D37819003D826D /* MatchesHorizontalController.swift */,
 			);
 			path = MatchesMessages;
 			sourceTree = "<group>";
@@ -287,6 +292,7 @@
 				44C2DAF622D0E787001800EE /* MessageCell.swift */,
 				448B48C422D1BA4300F9A384 /* CustomInputAccessoryView.swift */,
 				4460F28C22D367D7003D826D /* MatchCell.swift */,
+				4460F29222D3794D003D826D /* MatchesHeader.swift */,
 			);
 			path = MatchesMessages;
 			sourceTree = "<group>";
@@ -574,6 +580,7 @@
 				4460C40D22C7936A0042AC61 /* LoginViewModel.swift in Sources */,
 				445D42E622CDFA8500C88A13 /* MatchesMessagesController.swift in Sources */,
 				4460C40822C78B920042AC61 /* Firebase+Utils.swift in Sources */,
+				4460F29122D37819003D826D /* MatchesHorizontalController.swift in Sources */,
 				44441DF822BBBEE4005960B6 /* CardViewModel.swift in Sources */,
 				44C2DAF722D0E787001800EE /* MessageCell.swift in Sources */,
 				44441DF022BA9A2D005960B6 /* CardView.swift in Sources */,
@@ -581,6 +588,7 @@
 				44B04B0922CB44FF00294772 /* PhotoController.swift in Sources */,
 				4460F28D22D367D7003D826D /* MatchCell.swift in Sources */,
 				44441DEE22BA8BDC005960B6 /* TopNavigationStackView.swift in Sources */,
+				4460F29322D3794D003D826D /* MatchesHeader.swift in Sources */,
 				44441DFC22BCCB54005960B6 /* RegistrationController.swift in Sources */,
 				44441DF322BB8F8F005960B6 /* User.swift in Sources */,
 				44CB77F222CC92CA00284385 /* SendMessageButton.swift in Sources */,
