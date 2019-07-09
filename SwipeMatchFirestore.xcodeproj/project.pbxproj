@@ -50,6 +50,7 @@
 		44CB77F022CC7AA700284385 /* MatchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CB77EF22CC7AA700284385 /* MatchView.swift */; };
 		44CB77F222CC92CA00284385 /* SendMessageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CB77F122CC92CA00284385 /* SendMessageButton.swift */; };
 		44CD993422C2128400620E6D /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CD993322C2128400620E6D /* SettingsCell.swift */; };
+		44D07A3822D46B1900149986 /* RecentMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D07A3722D46B1900149986 /* RecentMessageCell.swift */; };
 		5B2F8160EBE208D9A87D9B94 /* Pods_SwipeMatchFirestoreTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AE54B90912240A8FE99287F /* Pods_SwipeMatchFirestoreTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -121,6 +122,7 @@
 		44CB77EF22CC7AA700284385 /* MatchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchView.swift; sourceTree = "<group>"; };
 		44CB77F122CC92CA00284385 /* SendMessageButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendMessageButton.swift; sourceTree = "<group>"; };
 		44CD993322C2128400620E6D /* SettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCell.swift; sourceTree = "<group>"; };
+		44D07A3722D46B1900149986 /* RecentMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentMessageCell.swift; sourceTree = "<group>"; };
 		6100D70E141FFF9E4B5FA792 /* Pods-SwipeMatchFirestoreTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwipeMatchFirestoreTests.debug.xcconfig"; path = "Target Support Files/Pods-SwipeMatchFirestoreTests/Pods-SwipeMatchFirestoreTests.debug.xcconfig"; sourceTree = "<group>"; };
 		692FCAB99FDE7720A599722A /* Pods-SwipeMatchFirestoreUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwipeMatchFirestoreUITests.release.xcconfig"; path = "Target Support Files/Pods-SwipeMatchFirestoreUITests/Pods-SwipeMatchFirestoreUITests.release.xcconfig"; sourceTree = "<group>"; };
 		866A0FC257B5A30500156EFA /* Pods-SwipeMatchFirestoreUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwipeMatchFirestoreUITests.debug.xcconfig"; path = "Target Support Files/Pods-SwipeMatchFirestoreUITests/Pods-SwipeMatchFirestoreUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -236,7 +238,6 @@
 				44CB77EF22CC7AA700284385 /* MatchView.swift */,
 				44CB77F122CC92CA00284385 /* SendMessageButton.swift */,
 				444D72FA22CCD93500146FBF /* KeepSwipingButton.swift */,
-				445D42E722CF13D600C88A13 /* MatchesNavBar.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -289,10 +290,12 @@
 			isa = PBXGroup;
 			children = (
 				445D42EC22CF62BA00C88A13 /* MessagesNavbar.swift */,
+				445D42E722CF13D600C88A13 /* MatchesNavBar.swift */,
 				44C2DAF622D0E787001800EE /* MessageCell.swift */,
 				448B48C422D1BA4300F9A384 /* CustomInputAccessoryView.swift */,
 				4460F28C22D367D7003D826D /* MatchCell.swift */,
 				4460F29222D3794D003D826D /* MatchesHeader.swift */,
+				44D07A3722D46B1900149986 /* RecentMessageCell.swift */,
 			);
 			path = MatchesMessages;
 			sourceTree = "<group>";
@@ -585,6 +588,7 @@
 				44C2DAF722D0E787001800EE /* MessageCell.swift in Sources */,
 				44441DF022BA9A2D005960B6 /* CardView.swift in Sources */,
 				447FEBD222BF84C900CD2A4E /* SettingsController.swift in Sources */,
+				44D07A3822D46B1900149986 /* RecentMessageCell.swift in Sources */,
 				44B04B0922CB44FF00294772 /* PhotoController.swift in Sources */,
 				4460F28D22D367D7003D826D /* MatchCell.swift in Sources */,
 				44441DEE22BA8BDC005960B6 /* TopNavigationStackView.swift in Sources */,
